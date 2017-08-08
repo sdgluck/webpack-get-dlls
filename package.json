@@ -1,8 +1,12 @@
 {
   "name": "webpack-get-dlls",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Get DLL configs from a webpack config",
   "main": "index.js",
+  "bin": {
+    "wpk-get-dlls": "index.js",
+    "webpack-get-dlls": "index.js"
+  },
   "scripts": {
     "test": "jest",
     "prepublishOnly": "npm test"

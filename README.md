@@ -56,6 +56,8 @@ console.log(dlls)
 
 Outputs the name of each DLL on its own line.
 
+Available as `webpack-get-dlls` or `wpk-get-dlls`.
+
 Example:
 
 ```bash
