@@ -9,7 +9,7 @@ describe('webpack-get-dlls', () => {
   it('returns empty if config.plugins is not array', () => {
     expect(getDlls({plugins: null})).toEqual({
       dlls: [],
-      errs: []
+      errors: []
     })
   })
 
@@ -31,7 +31,7 @@ describe('webpack-get-dlls', () => {
           }
         }
       ],
-      errs: []
+      errors: []
     }
 
     expect(getDlls(config)).toEqual(expected)
@@ -56,7 +56,7 @@ describe('webpack-get-dlls', () => {
           }
         }
       ],
-      errs: []
+      errors: []
     }
 
     expect(getDlls(config)).toEqual(expected)
@@ -71,7 +71,7 @@ describe('webpack-get-dlls', () => {
 
     expect(getDlls(config)).toEqual({
       dlls: [],
-      errs: [{
+      errors: [{
         error: getDlls.ERRORS.NO_MANIFEST_PROPERTY,
         position: 0
       }]
@@ -92,7 +92,7 @@ describe('webpack-get-dlls', () => {
 
     expect(getDlls(config)).toEqual({
       dlls: [],
-      errs: [{
+      errors: [{
         error: getDlls.ERRORS.FILE_NOT_FOUND,
         path: './dll.js',
         position: 0

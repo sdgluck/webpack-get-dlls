@@ -10,12 +10,12 @@ module.exports.ERRORS = ERRORS
 
 function getDlls (config) {
   const dlls = []
-  const errs = []
+  const errors = []
 
   if (typeof config !== 'object') {
     throw new Error(`expecting config to be object, got "${typeof config}"`)
   } else if (!Array.isArray(config.plugins)) {
-    return {dlls, errs}
+    return {dlls, errors}
   }
 
   config.plugins.forEach((plugin, i) => {
@@ -24,7 +24,7 @@ function getDlls (config) {
     }
 
     if (!plugin.options.manifest) {
-      errs.push({
+      errors.push({
         error: ERRORS.NO_MANIFEST_PROPERTY,
         position: i
       })
@@ -39,7 +39,7 @@ function getDlls (config) {
         absPath = path.resolve(process.cwd(), plugin.options.manifest)
         configPath = require(absPath).name
       } catch (err) {
-        errs.push({
+        errors.push({
           error: ERRORS.FILE_NOT_FOUND,
           path: absPath,
           position: i
@@ -55,7 +55,7 @@ function getDlls (config) {
     } catch (err) {}
 
     if (!config) {
-      errs.push({
+      errors.push({
         error: ERRORS.FILE_NOT_FOUND,
         path: configPath,
         position: i
@@ -69,5 +69,5 @@ function getDlls (config) {
     })
   })
 
-  return {dlls, errs}
+  return {dlls, errors}
 }
