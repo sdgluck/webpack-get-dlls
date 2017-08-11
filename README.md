@@ -22,7 +22,7 @@ Get all DLL configuration objects referenced in the given `webpackConfig`.
 
 - __webpackConfig__ {Object} (required) The webpack configuration
 
-Returns an object with `dlls` and `errors` properties, both arrays of objects.
+Returns an object with `dlls` and `errors` properties.
 
 For each DLL that could not be found a record will be in `errors`.
 
@@ -36,7 +36,7 @@ const getDlls = require('webpack-get-dlls')
 
 const {dlls, errors} = getDlls(webpackConfig)
 
-if (errors.length) {
+if (errors) {
     console.log(errors)
     //=> [{
     //     error: 'DLL_NOT_FOUND',

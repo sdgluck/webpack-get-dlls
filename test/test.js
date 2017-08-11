@@ -9,7 +9,7 @@ describe('webpack-get-dlls', () => {
   it('returns empty if config.plugins is not array', () => {
     expect(getDlls({plugins: null})).toEqual({
       dlls: [],
-      errors: []
+      errors: null
     })
   })
 
@@ -31,7 +31,7 @@ describe('webpack-get-dlls', () => {
           }
         }
       ],
-      errors: []
+      errors: null
     }
 
     expect(getDlls(config)).toEqual(expected)
@@ -56,7 +56,7 @@ describe('webpack-get-dlls', () => {
           }
         }
       ],
-      errors: []
+      errors: null
     }
 
     expect(getDlls(config)).toEqual(expected)
