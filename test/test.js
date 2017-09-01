@@ -1,3 +1,5 @@
+const path = require('path')
+
 const getDlls = require('../')
 const DllReferencePlugin = require('./DllReferencePlugin')
 
@@ -69,16 +71,13 @@ describe('webpack-get-dlls', () => {
       ]
     }
 
-    expect(getDlls(config)).toEqual({
-      dlls: [],
-      errors: [{
-        error: getDlls.ERRORS.NO_MANIFEST_PROPERTY,
-        position: 0
-      }]
-    })
+    const result = getDlls(config)
+
+    expect(result.dlls).toEqual([])
+    expect(result.errors.length).toEqual(1)
+    expect(result.errors[0].stack).toEqual('Error: ' + getDlls.ERRORS.NO_MANIFEST_PROPERTY)
+    expect(result.errors[0].position).toEqual(0)
   })
-
-
 
   it('produces FILE_NOT_FOUND error', () => {
     const config = {
@@ -90,13 +89,12 @@ describe('webpack-get-dlls', () => {
       ]
     }
 
-    expect(getDlls(config)).toEqual({
-      dlls: [],
-      errors: [{
-        error: getDlls.ERRORS.FILE_NOT_FOUND,
-        path: './dll.js',
-        position: 0
-      }]
-    })
+    const result = getDlls(config)
+
+    expect(result.dlls).toEqual([])
+    expect(result.errors.length).toEqual(1)
+    expect(result.errors[0].stack).toEqual('Error: ' + getDlls.ERRORS.FILE_NOT_FOUND)
+    expect(result.errors[0].path).toEqual(path.resolve(process.cwd(), './dll.js'))
+    expect(result.errors[0].position).toEqual(0)
   })
 })
